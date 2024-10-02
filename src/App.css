@@ -63,3 +63,40 @@
     transform: translateY(-50px);
   }
 }
+
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes glowAnimation {
+  0% {
+    box-shadow: 0 -10px 20px rgba(243, 186, 47, 0.5), 0 -20px 40px rgba(255, 87, 51, 0.5), 0 -30px 60px rgba(255, 189, 105, 0.5);
+  }
+  50% {
+    box-shadow: 0 -10px 20px rgba(106, 130, 251, 0.7), 0 -20px 40px rgba(52, 232, 158, 0.7), 0 -30px 60px rgba(244, 92, 67, 0.7);
+  }
+  100% {
+    box-shadow: 0 -10px 20px rgba(243, 186, 47, 0.5), 0 -20px 40px rgba(255, 87, 51, 0.5), 0 -30px 60px rgba(255, 189, 105, 0.5);
+  }
+}
+
+.gradient-effect {
+  background: linear-gradient(90deg, #f3ba2f, #ff5733, #ffbd69, #34e89e, #6a82fb, #f45c43, #f3ba2f);
+  background-size: 400% 400%;
+  animation: gradientAnimation 8s ease infinite, glowAnimation 8s ease infinite; /* Thêm glowAnimation */
+  border-radius: 48px 48px 0 0; /* Top rounded */
+  position: relative;
+}
+
+.shadow-effect {
+  box-shadow: 0 4px 6px rgba(255, 255, 255, 0.1), 0 8px 16px rgba(255, 255, 255, 0.08), 0 8px 16px rgba(255, 255, 255, 0.2);
+}
+
