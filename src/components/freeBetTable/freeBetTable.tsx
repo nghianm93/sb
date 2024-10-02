@@ -116,9 +116,9 @@ export default function CollapsibleTable() {
     return (
         <TableContainer
             component={Paper}
-            className="overflow-y-auto max-h-[400px] rounded-t-[48px]"
+            className="overflow-y-auto max-h-[600px] rounded-t-[48px] bg-black"
         >
-            <Table stickyHeader aria-label="collapsible table">
+            <Table stickyHeader aria-label="collapsible table" className="bg-[#f3ba2f]">
                 <TableHead>
                     <TableRow>
                         <TableCell />

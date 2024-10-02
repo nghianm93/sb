@@ -140,10 +140,29 @@ const SureBet: React.FC = () => {
 
                 <div className="flex-grow mt-4 bg-[#f3ba2f] rounded-t-[48px] relative  z-0 gradient-effect">
                     <div className="absolute top-[2px] left-0 right-0 bottom-0 bg-[#1d2025] rounded-t-[46px]">
-                        <Tabs value={value} onChange={handleChange} aria-label="icon label tabs example">
-                            <Tab icon={<PhoneIcon />} label="RECENTS" />
-                            <Tab icon={<FavoriteIcon />} label="FAVORITES" />
-                            <Tab icon={<PersonPinIcon />} label="NEARBY" />
+                        <Tabs value={value} onChange={handleChange} aria-label="icon label tabs example" variant="fullWidth" TabIndicatorProps={{
+                            style: {
+                                backgroundColor: 'gray', // Đổi màu của indicator thành màu xám
+                            },
+                        }}>
+                            <Tab icon={<PhoneIcon />} label="RECENTS" sx={{
+                                '&.Mui-selected': {
+                                    color: '#f3ba2e',
+                                },
+                                color: '#84827c',
+                            }}/>
+                            <Tab icon={<FavoriteIcon />} label="FAVORITES" sx={{
+                                '&.Mui-selected': {
+                                    color: '#f3ba2e',
+                                },
+                                color: '#84827c',
+                            }}/>
+                            <Tab icon={<PersonPinIcon />} label="NEARBY" sx={{
+                                '&.Mui-selected': {
+                                    color: '#f3ba2e',
+                                },
+                                color: '#84827c',
+                            }}/>
                         </Tabs>
                         {/*Daily Block*/}
                         {/*<div className="px-4 mt-6 flex justify-between gap-2">*/}
@@ -184,7 +203,6 @@ const SureBet: React.FC = () => {
                         {/*    </div>*/}
                         {/*</div>*/}
                         {/*Hamster Coin*/}
-                        <div className="mt-[200px]">test</div>
                         <CollapsibleTable/>
                     </div>
                 </div>
