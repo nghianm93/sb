@@ -1,10 +1,7 @@
-import  { useState, useEffect } from 'react';
+import  { useState } from 'react';
 import React from 'react';
 import '../../App.css';
-import Hamster from '../../icons/Hamster';
-import { binanceLogo, dailyCipher, dailyReward, dollarCoin, mainCharacter } from '../../images';
-import Info from '../../icons/Info';
-import Settings from '../../icons/Settings';
+import { binanceLogo} from '../../images';
 import Mine from '../../icons/Mine';
 import Friends from '../../icons/Friends';
 import Coins from '../../icons/Coins';
@@ -15,7 +12,7 @@ interface BottomBarProps {
 
 const BottomBar: React.FC<BottomBarProps> = ({ onItemClick }) => {
     const [activeBottomBarItem, setActiveBottomBarItem] = useState('surebet');
-    const handleClickBottomBarItem = (item) => {
+    const handleClickBottomBarItem = (item: string) => {
         setActiveBottomBarItem(item);
         onItemClick(item);
     };

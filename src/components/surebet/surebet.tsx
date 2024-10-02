@@ -46,65 +46,10 @@ const SureBet: React.FC = () => {
     const pointsToAdd = 11;
     const profitPerHour = 126420;
 
-    const [dailyRewardTimeLeft, setDailyRewardTimeLeft] = useState("");
-    const [dailyCipherTimeLeft, setDailyCipherTimeLeft] = useState("");
-
-
-
-    const [activeDailyItem, setActiveDailyItem] = useState('free');
-    const handleClickDailyItem = (item) => {
-        setActiveDailyItem(item);
-    };
 
     const [value, setValue] = React.useState(0);
     const handleChange = (event: React.SyntheticEvent, newValue: number) => {
         setValue(newValue);
-    };
-
-
-    const calculateTimeLeft = (targetHour: number) => {
-        const now = new Date();
-        const target = new Date(now);
-        target.setUTCHours(targetHour, 0, 0, 0);
-
-        if (now.getUTCHours() >= targetHour) {
-            target.setUTCDate(target.getUTCDate() + 1);
-        }
-
-        const diff = target.getTime() - now.getTime();
-        const hours = Math.floor(diff / (1000 * 60 * 60));
-        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-
-        const paddedHours = hours.toString().padStart(2, '0');
-        const paddedMinutes = minutes.toString().padStart(2, '0');
-
-        return `${paddedHours}:${paddedMinutes}`;
-    };
-
-    useEffect(() => {
-        const updateCountdowns = () => {
-            setDailyRewardTimeLeft(calculateTimeLeft(0));
-            setDailyCipherTimeLeft(calculateTimeLeft(19));
-        };
-
-        updateCountdowns();
-        const interval = setInterval(updateCountdowns, 60000); // Update every minute
-
-        return () => clearInterval(interval);
-    }, []);
-
-    const handleCardClick = (e: React.MouseEvent<HTMLDivElement>) => {
-        const card = e.currentTarget;
-        const rect = card.getBoundingClientRect();
-        const x = e.clientX - rect.left - rect.width / 2;
-        const y = e.clientY - rect.top - rect.height / 2;
-        card.style.transform = `perspective(1000px) rotateX(${-y / 10}deg) rotateY(${x / 10}deg)`;
-        setTimeout(() => {
-            card.style.transform = '';
-        }, 100);
-
-        setPoints(points + pointsToAdd);
-        setClicks([...clicks, { id: Date.now(), x: e.pageX, y: e.pageY }]);
     };
 
     const handleAnimationEnd = (id: number) => {
