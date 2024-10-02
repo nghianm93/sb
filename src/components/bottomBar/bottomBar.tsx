@@ -9,10 +9,15 @@ import Mine from '../../icons/Mine';
 import Friends from '../../icons/Friends';
 import Coins from '../../icons/Coins';
 
-const BottomBar: React.FC = () => {
+interface BottomBarProps {
+    onItemClick: (component: string) => void;
+}
+
+const BottomBar: React.FC<BottomBarProps> = ({ onItemClick }) => {
     const [activeBottomBarItem, setActiveBottomBarItem] = useState('surebet');
     const handleClickBottomBarItem = (item) => {
         setActiveBottomBarItem(item);
+        onItemClick(item);
     };
     return(
         <div className="fixed bottom-0 left-1/2 transform -translate-x-1/2 w-[calc(100%-2rem)] max-w-xl bg-[#272a2f] flex justify-around items-center z-50 rounded-3xl text-xs">
