@@ -8,6 +8,13 @@ import Settings from '../../icons/Settings';
 import Mine from '../../icons/Mine';
 import Friends from '../../icons/Friends';
 import Coins from '../../icons/Coins';
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
+import PhoneIcon from '@mui/icons-material/Phone';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import PersonPinIcon from '@mui/icons-material/PersonPin';
+
+import CollapsibleTable from '../freeBetTable/freeBetTable.tsx'
 
 const SureBet: React.FC = () => {
     const levelNames = [
@@ -45,14 +52,16 @@ const SureBet: React.FC = () => {
     const [dailyRewardTimeLeft, setDailyRewardTimeLeft] = useState("");
     const [dailyCipherTimeLeft, setDailyCipherTimeLeft] = useState("");
 
-    const [activeBottomBarItem, setActiveBottomBarItem] = useState('surebet');
-    const handleClickBottomBarItem = (item) => {
-        setActiveBottomBarItem(item);
-    };
+
 
     const [activeDailyItem, setActiveDailyItem] = useState('free');
     const handleClickDailyItem = (item) => {
         setActiveDailyItem(item);
+    };
+
+    const [value, setValue] = React.useState(0);
+    const handleChange = (event: React.SyntheticEvent, newValue: number) => {
+        setValue(newValue);
     };
 
 
@@ -189,77 +198,59 @@ const SureBet: React.FC = () => {
 
                 <div className="flex-grow mt-4 bg-[#f3ba2f] rounded-t-[48px] relative  z-0 gradient-effect">
                     <div className="absolute top-[2px] left-0 right-0 bottom-0 bg-[#1d2025] rounded-t-[46px]">
+                        <Tabs value={value} onChange={handleChange} aria-label="icon label tabs example">
+                            <Tab icon={<PhoneIcon />} label="RECENTS" />
+                            <Tab icon={<FavoriteIcon />} label="FAVORITES" />
+                            <Tab icon={<PersonPinIcon />} label="NEARBY" />
+                        </Tabs>
                         {/*Daily Block*/}
-                        <div className="px-4 mt-6 flex justify-between gap-2">
-                            <div onClick={() => handleClickDailyItem('free')}
-                                className={`bg-[#272a2f] rounded-lg px-4 py-2 w-full relative ${activeDailyItem == 'free' ? 'shadow-effect' : ''}`}>
-                                <div className="dot"></div>
-                                <img src={dailyReward} alt="Daily Reward" className="mx-auto w-12 h-12" />
-                                <p className="text-[10px] text-center text-white mt-1">Kèo Miễn Phí</p>
-                                <p className="text-[10px] font-medium text-center text-gray-400 mt-2">{dailyRewardTimeLeft}</p>
-                            </div>
-                            <div onClick={() => handleClickDailyItem('premium')}
-                                 className={`bg-[#272a2f] rounded-lg px-4 py-2 w-full relative ${activeDailyItem == 'premium' ? 'shadow-effect' : ''}`}>
-                                <div className="dot"></div>
-                                <img src={dailyCipher} alt="Daily Cipher" className="mx-auto w-12 h-12" />
-                                <p className="text-[10px] text-center text-white mt-1">Kèo Cao Cấp</p>
-                                <p className="text-[10px] font-medium text-center text-gray-400 mt-2">{dailyCipherTimeLeft}</p>
-                            </div>
+                        {/*<div className="px-4 mt-6 flex justify-between gap-2">*/}
+                        {/*    <div onClick={() => handleClickDailyItem('free')}*/}
+                        {/*        className={`bg-[#272a2f] rounded-lg px-4 py-2 w-full relative ${activeDailyItem == 'free' ? 'shadow-effect' : ''}`}>*/}
+                        {/*        <div className="dot"></div>*/}
+                        {/*        <img src={dailyReward} alt="Daily Reward" className="mx-auto w-12 h-12" />*/}
+                        {/*        <p className="text-[10px] text-center text-white mt-1">Kèo Miễn Phí</p>*/}
+                        {/*        <p className="text-[10px] font-medium text-center text-gray-400 mt-2">{dailyRewardTimeLeft}</p>*/}
+                        {/*    </div>*/}
+                        {/*    <div onClick={() => handleClickDailyItem('premium')}*/}
+                        {/*         className={`bg-[#272a2f] rounded-lg px-4 py-2 w-full relative ${activeDailyItem == 'premium' ? 'shadow-effect' : ''}`}>*/}
+                        {/*        <div className="dot"></div>*/}
+                        {/*        <img src={dailyCipher} alt="Daily Cipher" className="mx-auto w-12 h-12" />*/}
+                        {/*        <p className="text-[10px] text-center text-white mt-1">Kèo Cao Cấp</p>*/}
+                        {/*        <p className="text-[10px] font-medium text-center text-gray-400 mt-2">{dailyCipherTimeLeft}</p>*/}
+                        {/*    </div>*/}
 
-                        </div>
+                        {/*</div>*/}
                         {/*Daily Block*/}
                         {/*Amount Exchange*/}
-                        <div className="px-4 mt-4 flex justify-center">
-                            <div className="px-4 py-2 flex items-center space-x-2">
-                                <img src={dollarCoin} alt="Dollar Coin" className="w-10 h-10" />
-                                <p className="text-4xl text-white">{points.toLocaleString()}</p>
-                            </div>
-                        </div>
+                        {/*<div className="px-4 mt-4 flex justify-center">*/}
+                        {/*    <div className="px-4 py-2 flex items-center space-x-2">*/}
+                        {/*        <img src={dollarCoin} alt="Dollar Coin" className="w-10 h-10" />*/}
+                        {/*        <p className="text-4xl text-white">{points.toLocaleString()}</p>*/}
+                        {/*    </div>*/}
+                        {/*</div>*/}
                         {/*Amount Exchange*/}
                         {/*Hamster Coin*/}
-                        <div className="px-4 mt-4 flex justify-center">
-                            <div
-                                className="w-80 h-80 p-4 rounded-full circle-outer"
-                                onClick={handleCardClick}
-                            >
-                                <div className="w-full h-full rounded-full circle-inner">
-                                    <img src={mainCharacter} alt="Main Character" className="w-full h-full" />
-                                </div>
-                            </div>
-                        </div>
+                        {/*<div className="px-4 mt-4 flex justify-center">*/}
+                        {/*    <div*/}
+                        {/*        className="w-80 h-80 p-4 rounded-full circle-outer"*/}
+                        {/*        onClick={handleCardClick}*/}
+                        {/*    >*/}
+                        {/*        <div className="w-full h-full rounded-full circle-inner">*/}
+                        {/*            <img src={mainCharacter} alt="Main Character" className="w-full h-full" />*/}
+                        {/*        </div>*/}
+                        {/*    </div>*/}
+                        {/*</div>*/}
                         {/*Hamster Coin*/}
-
+                        <div className="mt-[200px]">test</div>
+                        <CollapsibleTable/>
                     </div>
                 </div>
+
             </div>
 
             {/* Bottom fixed div */}
-            <div className="fixed bottom-0 left-1/2 transform -translate-x-1/2 w-[calc(100%-2rem)] max-w-xl bg-[#272a2f] flex justify-around items-center z-50 rounded-3xl text-xs">
-                <div  onClick={() => handleClickBottomBarItem('surebet')} // Khi click sẽ set 'exchange' là active
-                      className={`text-center text-[#85827d] w-1/5 ${activeBottomBarItem === 'surebet' ? 'bg-[#1c1f24] m-1 p-2 rounded-2xl' : 'text-[#85827d]'}`}>
-                    <img src={binanceLogo} alt="Exchange" className="w-8 h-8 mx-auto" />
-                    <p className="mt-1">Surebet</p>
-                </div>
-                <div  onClick={() => handleClickBottomBarItem('mine')} // Khi click sẽ set 'exchange' là active
-                      className={`text-center text-[#85827d] w-1/5 ${activeBottomBarItem === 'mine' ? 'bg-[#1c1f24] m-1 p-2 rounded-2xl' : 'text-[#85827d]'}`}>
-                    <Mine className="w-8 h-8 mx-auto" />
-                    <p className="mt-1">Mine</p>
-                </div>
-                <div onClick={() => handleClickBottomBarItem('friends')} // Khi click sẽ set 'exchange' là active
-                     className={`text-center text-[#85827d] w-1/5 ${activeBottomBarItem === 'friends' ? 'bg-[#1c1f24] m-1 p-2 rounded-2xl' : 'text-[#85827d]'}`}>
-                    <Friends className="w-8 h-8 mx-auto" />
-                    <p className="mt-1">Friends</p>
-                </div>
-                <div onClick={() => handleClickBottomBarItem('earn')} // Khi click sẽ set 'exchange' là active
-                     className={`text-center text-[#85827d] w-1/5 ${activeBottomBarItem === 'earn' ? 'bg-[#1c1f24] m-1 p-2 rounded-2xl' : 'text-[#85827d]'}`}>
-                    <Coins className="w-8 h-8 mx-auto" />
-                    <p className="mt-1">Earn</p>
-                </div>
-                {/*<div className="text-center text-[#85827d] w-1/5">*/}
-                {/*    <img src={hamsterCoin} alt="Airdrop" className="w-8 h-8 mx-auto" />*/}
-                {/*    <p className="mt-1">Airdrop</p>*/}
-                {/*</div>*/}
-            </div>
+
 
             {clicks.map((click) => (
                 <div
